@@ -1,20 +1,25 @@
 # This file has all the various functions of SQL and also has a login feature, to ensure that an authenticated user can access the database. 
 
 # SQL_FUNCTIONS
-import mysql.connector
 
-headers = [0,'COMMON']
+import mysql.connector # This is the required package to run the MYSQL COMMANDS
 
-mydb = mysql.connector.connect(
+headers = [0,'COMMON'] # This is a list that holds a user authentication. 
+
+mydb = mysql.connector.connect( # To establish the connection between python on MYSQL
     host="localhost",
-    user="",
-    password="",
-    database=headers[1]
+    user="",            # Username to be entered here
+    password="",        # Password for MYSQL
+    database=headers[1] # Don't Change
 )
-mc = mydb.cursor() 
 
+mc = mydb.cursor() # The MYSQL CURSOR TO EXECUTE THE COMMANDS
 
-def Login():
+# FUNCTIONS
+
+# Codes for creating, deleting and modifying tables.
+
+def Login():                            # This function is the most important function, without which none of the other codes work.
     name = input("Enter Username: ")
     pas = input("Enter the Password: ")
     mc.execute(f"USE {name};")
@@ -27,16 +32,16 @@ def Login():
         else:
             mc.execute(f"USE COMMON;") 
 
-def DisplayDatabase():
-    mc.execute("SHOW DATABASES;")
-    data = mc.fetchall()
-    for i in range(len(data)):
-        print(f'{i + 1} - {data[i][0]}')
-    print()
-    
-    return data
+def DisplayDatabase():                  # To get all the Database Names 
+    if Auth():
+        mc.execute("SHOW DATABASES;")
+        data = mc.fetchall()
+        for i in range(len(data)):
+            print(f'{i + 1} - {data[i][0]}')
+        print()
+        return data
 
-def SignUp():
+def SignUp():                           # Signup for a new User (Creating a new Database)
     database_name = input("Enter the Database Name to be Created: ")
     pas = input("Enter Your Password: ")
     mc.execute(f"CREATE DATABASE IF NOT EXISTS {database_name};")
@@ -47,18 +52,19 @@ def SignUp():
     print()
     Login()
 
-def DropDatabase():
-    data = DisplayDatabase()
-    dd = int(input("Enter the Database to be Deleted (Number): "))
-    mc.execute(f"DROP DATABASE {data[dd-1][0]}")
+def DropDatabase():                     # To drop a Database
+    if Auth():
+        data = DisplayDatabase()
+        dd = int(input("Enter the Database to be Deleted (Number): "))
+        mc.execute(f"DROP DATABASE {data[dd-1][0]}")
 
-def Auth():
+def Auth():                             # To check if the user has logged in or not
     if headers[0] == 1:
         return True
     else :
         return False
 
-def ShowTable():
+def ShowTable():                        # To display and send the Table datas thorughout the file
     if Auth():
         mc.execute("SHOW TABLES;")
         data = mc.fetchall()
@@ -66,7 +72,7 @@ def ShowTable():
             print(f'{i + 1} - {data[i][0]}')
         return data
 
-def CreateTable():
+def CreateTable():                      # Creating a table with Datatypes and Constraints (Complusory)
     if Auth():
         table_name = input("Enter the New Table's Name: ")
         nof = int(input("Enter the number of Columns: "))
@@ -91,7 +97,7 @@ def CreateTable():
             tet = ",".join(c)
         mc.execute(f"CREATE TABLE {table_name}({tet});")
 
-def DesTable():
+def DesTable():                         # Desc Table_Name
     if Auth():
         data = ShowTable()
         T_N = int(input("Enter the Table Number to Show Details: "))
@@ -102,7 +108,7 @@ def DesTable():
             print(i)
         return (det, data, T_N)
 
-def Rename():
+def Rename():                           # To change the name of the Table
     if Auth():
         data = ShowTable()
         print("\nWhich Column Name to Change:-")
@@ -114,7 +120,7 @@ def Rename():
             mc.execute(f"ALTER TABLE {data[rn -1][0]} RENAME TO {rnn}")
 
 def DropTable():
-    if Auth():
+    if Auth():                          # Drop the table from the database
         data = ShowTable()
         print("\nWhich Column Name to Change:-")
         for i in range(len(data)):
@@ -123,7 +129,7 @@ def DropTable():
         if data[dt-1][0] != 'password':
             mc.execute(f"DROP TABLE {data[dt-1][0]}")
         
-def ADMTable(): # ADD DELETE MODIFY TABLE
+def ADMTable():                         # ADD, DELETE AND MODIFY COLUMNS IN A TABLE
     if Auth():
         types = ["ADD","DROP","MODIFY"]
         print()
@@ -176,7 +182,7 @@ def ADMTable(): # ADD DELETE MODIFY TABLE
                 else: 
                     mc.execute(f'ALTER TABLE {data[1][data[2] -1][0]} MODIFY { data[0][drope - 1][0]} {txt};')
         
-def Constraint():
+def Constraint():                       # Used as a function to send the text for the constraints while making a TABLE and its details
     constraints = ["NOT NULL", "DEFAULT", "UNIQUE", "PRIMARY KEY", "CHECK","FOREIGN KEY"]
     for i in range(len(constraints)):
         print(f'{i + 1} - {constraints[i]}')
@@ -192,3 +198,84 @@ def Constraint():
     else:
         text = f"{constraints[c - 1]}"
     return text
+
+# Codes for displaying content.
+
+def DisplayAll():                          # SELECT * FROM TABLE_NAME
+    if Auth():
+        data = ShowTable()
+        ta = int(input("Enter the table num you want to access: "))
+        mc.execute(F"SELECT * FROM {data[ta -1][0]}")
+        for i in mc.description:
+            print(i[0], end="   ")
+        data = mc.fetchall()
+        for i in data:
+            print()
+            for j in i:
+                print(j, end="     ")
+        
+def DisplayWithWhere():                     # SELECT * FROM TABLE NAME WHERE <CONDITION>
+    if Auth():
+        data = ShowTable()
+        ta = int(input("Enter the table num you want to access: "))
+        cond = input("Enter the condition (WHERE METHOD): ")
+        mc.execute(F"SELECT * FROM {data[ta -1][0]} WHERE {cond};")
+        for i in mc.description:
+            print(i[0], end="   ")
+        data = mc.fetchall()
+        for i in data:
+            print()
+            for j in i:
+                print(j, end="     ")
+
+def DisplayOrderBy():                       # SELECT * FROM TABLE_NAME ORDER BY COLUMN_NAME
+    if Auth():
+        data = DesTable()
+        ta = input("Enter the column name to order with: ")
+        ob = input("Enter the method to order by (asc/desc): ")
+        mc.execute(F"SELECT * FROM {data[1][data[2]-1][0]} ORDER BY {ta} {ob};")
+        for i in mc.description:
+            print(i[0], end="   ")
+        data = mc.fetchall()
+        for i in data:
+            print()
+            for j in i:
+                print(j, end="     ")
+
+def DisplayGroupBy():                       # SELECT * FROM TABLE_NAME GROUP BY COLUMN_NAME
+    if Auth():
+        data = DesTable()
+        ta = input("Enter the column name to group with: ")
+        mc.execute(F"SELECT * FROM {data[1][data[2]-1][0]} GROUP BY {ta};")
+        for i in mc.description:
+            print(i[0], end="   ")
+        data = mc.fetchall()
+        for i in data:
+            print()
+            for j in i:
+                print(j, end="     ")
+
+def CustomQuery():                          # TO WRITE A USER DEFINED QUERY TO GET THEIR MOST FAVORABLE OUTPUT `SELECT <USER QUERY>`
+    if Auth():
+        code = input("Enter Your Query Here (After SELECT): ")
+        mc.execute(f"SELECT {code} ;")
+        for i in mc.description:
+            print(i[0], end="   ")
+        data = mc.fetchall()
+        for i in data:
+            print()
+            for j in i:
+                print(j, end="     ")
+
+
+# Update Function
+
+def Update():                               # TO UPDATE THE RECORDS BY THE USER ITSELF BY PASSING THE QUERY
+    if Auth():
+        data = DesTable()
+        print()
+        for i in range(len(data[0])):
+            print(f"{i + 1} - {data[0][i][0]}")
+        table = data[1][data[2]-1][0]
+        wtu = input("Add your query here (Enter Your whole Query just as how you want to update with or witohut the WHERE CLAUS): ")
+        mc.execute(f"UPDATE {table} SET {wtu};")
