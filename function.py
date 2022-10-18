@@ -29,7 +29,9 @@ def Login():                            # This function is the most important fu
     for i in data:
         if i[0] == pas:
             headers = [1, name]
+            print("Login Successful!!")
         else:
+            print("Login Failed!!")
             mc.execute(f"USE COMMON;") 
 
 def DisplayDatabase():                  # To get all the Database Names 
@@ -52,11 +54,11 @@ def SignUp():                           # Signup for a new User (Creating a new 
     print()
     Login()
 
-def DropDatabase():                     # To drop a Database
-    if Auth():
-        data = DisplayDatabase()
-        dd = int(input("Enter the Database to be Deleted (Number): "))
-        mc.execute(f"DROP DATABASE {data[dd-1][0]}")
+# def DropDatabase():                     # To drop a Database
+#     if Auth():
+#         data = DisplayDatabase()
+#         dd = int(input("Enter the Database to be Deleted (Number): "))
+#         mc.execute(f"DROP DATABASE {data[dd-1][0]}")
 
 def Auth():                             # To check if the user has logged in or not
     if headers[0] == 1:
