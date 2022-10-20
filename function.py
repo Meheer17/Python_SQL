@@ -10,10 +10,11 @@ mydb = mysql.connector.connect( # To establish the connection between python on 
     host="localhost",
     user="",            # Username to be entered here
     password="",        # Password for MYSQL
-    database=headers[1] # Don't Change
 )
 
 mc = mydb.cursor() # The MYSQL CURSOR TO EXECUTE THE COMMANDS
+mc.execute(f"CREATE DATABASE IF NOT EXISTS {headers[1]};")
+mc.database = headers[1]
 
 # FUNCTIONS
 
@@ -22,20 +23,30 @@ mc = mydb.cursor() # The MYSQL CURSOR TO EXECUTE THE COMMANDS
 def Login():                            # This function is the most important function, without which none of the other codes work.
     name = input("Enter Username: ")
     pas = input("Enter the Password: ")
-    mc.execute(f"USE {name};")
-    mc.execute(f"SELECT * FROM password;")
-    data = mc.fetchall()
-    global headers
+    data = DisplayDatabase()
     for i in data:
-        if i[0] == pas:
-            headers = [1, name]
-            print("Login Successful!!")
+        if i[0] == name:
+            mc.execute(f"USE {name};")
+            mc.execute(f"SELECT * FROM password;")
+            data = mc.fetchall()
+            global headers
+            for i in data:
+                if i[0] == pas:
+                    headers = [1, name]
+                    print("Login Successful!!")
+                    break
+                else:
+                    print("Wrong Password!!")
+                    mc.execute(f"USE {headers[1]};") 
+                    break
         else:
-            print("Login Failed!!")
-            mc.execute(f"USE COMMON;") 
+            op = input("Do you want to sign up? (Y/N): ")
+            if op == "Y":
+                Signup()
+
 
 def DisplayDatabase():                  # To get all the Database Names 
-    if Auth():
+    # if Auth():
         mc.execute("SHOW DATABASES;")
         data = mc.fetchall()
         for i in range(len(data)):
@@ -221,7 +232,7 @@ def DisplayWithWhere():                     # SELECT * FROM TABLE NAME WHERE <CO
         data = ShowTable()
         ta = int(input("Enter the table num you want to access: "))
         cond = input("Enter the condition (WHERE METHOD): ")
-        mc.execute(F"SELECT * FROM {data[ta -1][0]} WHERE {cond};")
+        mc.execute(F"SELECT * FROM {data[ta - 1][0]} WHERE {cond};")
         for i in mc.description:
             print(i[0], end="   ")
         data = mc.fetchall()
