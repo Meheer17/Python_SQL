@@ -24,6 +24,7 @@ def Login():                            # This function is the most important fu
     name = input("Enter Username: ")
     pas = input("Enter the Password: ")
     data = DisplayDatabase()
+    login = False
     for i in data:
         if i[0] == name:
             mc.execute(f"USE {name};")
@@ -34,15 +35,16 @@ def Login():                            # This function is the most important fu
                 if i[0] == pas:
                     headers = [1, name]
                     print("Login Successful!!")
+                    login = True
                     break
                 else:
                     print("Wrong Password!!")
                     mc.execute(f"USE {headers[1]};") 
                     break
-        else:
-            op = input("Do you want to sign up? (Y/N): ")
-            if op == "Y":
-                Signup()
+    if login == False:
+        op = input("Do you want to sign up? (Y/N): ")
+        if op == "Y":
+            SignUp()
 
 
 def DisplayDatabase():                  # To get all the Database Names 
