@@ -83,6 +83,7 @@ def ShowTable():                        # To display and send the Table datas th
     if Auth():
         mc.execute("SHOW TABLES;")
         data = mc.fetchall()
+        print()
         for i in range(len(data)):
             print(f'{i + 1} - {data[i][0]}')
         return data
@@ -287,10 +288,34 @@ def CustomQuery():                          # TO WRITE A USER DEFINED QUERY TO G
 
 def Update():                               # TO UPDATE THE RECORDS BY THE USER ITSELF BY PASSING THE QUERY
     if Auth():
-        data = DesTable()
+        data = ShowTable()
+        print()
+        ch = int(input("Enter the table number: "))
+        table = data[0][ch-1]
+        wtu = input("Add your query here (Enter Your whole Query just as how you want to update with or witohut the WHERE CLAUS): ")
+        mc.execute(f"UPDATE {table} SET {wtu}")
+        mydb.commit()
+
+
+def del_rec(): # function to delete records under a table
+    if Auth():
+        data = ShowTable()
         print()
         for i in range(len(data[0])):
-            print(f"{i + 1} - {data[0][i][0]}")
-        table = data[1][data[2]-1][0]
-        wtu = input("Add your query here (Enter Your whole Query just as how you want to update with or witohut the WHERE CLAUS): ")
-        mc.execute(f"UPDATE {table} SET {wtu};")
+            print(f"{i + 1} - {data[0][i]}")
+        ch = int(input("Enter the table number: "))
+        table = data[0][ch-1]
+        print('\n1. Specific Records \n2. All records')
+        d = int(input("Enter the choice: "))
+
+        if d == 1: 
+            where = input("Enter the condition (without Where Clause): ")
+            mc.execute(f'DELETE FROM {table} WHERE {where}') 
+        elif d == 2:
+            c = input("Do you want to clear the table? (y/n): ")
+            if c.lower() == 'y':
+                mc.execute(f'DELETE FROM {table}') 
+    mydb.commit()
+        
+Login()
+Update()
