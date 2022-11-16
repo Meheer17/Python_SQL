@@ -317,5 +317,6 @@ def del_rec(): # function to delete records under a table
                 mc.execute(f'DELETE FROM {table}') 
     mydb.commit()
         
-Login()
-Update()
+def insert():
+    data = DesTable()
+
