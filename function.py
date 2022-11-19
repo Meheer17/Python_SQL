@@ -8,8 +8,8 @@ headers = [0,'COMMON'] # This is a list that holds a user authentication.
 
 mydb = mysql.connector.connect( # To establish the connection between python on MYSQL
     host="localhost",
-    user="",            # Username to be entered here
-    password="",        # Password for MYSQL
+    user="root",            # Username to be entered here
+    password="parth2005",        # Password for MYSQL
 )
 
 mc = mydb.cursor() # The MYSQL CURSOR TO EXECUTE THE COMMANDS
@@ -20,9 +20,7 @@ mc.database = headers[1]
 
 # Codes for creating, deleting and modifying tables.
 
-def Login():                            # This function is the most important function, without which none of the other codes work.
-    name = input("Enter Username: ")
-    pas = input("Enter the Password: ")
+def Login(name, pas):                            # This function is the most important function, without which none of the other codes work.
     data = DisplayDatabase()
     login = False
     for i in data:
