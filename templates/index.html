@@ -4,28 +4,29 @@
 <head>
   <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
 	<meta charset="utf-8">	<meta name="viewport" content="width=device-width">
-	<title>Data Base Management System</title>
+	<title>DATABASE MANAGEMENT SYSTEM</title>
 	<link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-	<!-- nav bar starts -->
-	<nav id="navbar">
+	
+	<nav id="Navigation Bar">
 		<ul>
-			<a href="#Information-section">
-				<li>ABOUT US</li>
+			<a href="#About-section">
+				<li>ABOUT THE WEBSITE</li>
 			</a>
-			<a href="#two-section">
-				<li>SIGNUP</li>
-			</a>
-			<a href="#three-section">
+			<a href="login-section">
 				<li>LOGIN</li>
 			</a>
+			<a href="#signup-section">
+				<li>SIGNUP</li>
+			</a>
+			
 		</ul>
 	</nav>
 	<!-- navbar ends -->
 
 	<!-- info section start-->
-	<section id="Information-section">
+	<section id="#About-section">
 		<p class="centered">
 			
 			<br>
@@ -35,32 +36,66 @@
     <!-- info section ends-->
 
     <!-- 2 section start-->
-    <section id="two-section">
+    <section id="#Signup-section">
       <div class="c o"> 
       <h2><u>INTRODUCTION:</u></h2>
-      <p>Electronic waste, or e-waste, is a term for electronic products that have become unwanted, non-working or obsolete, and have essentially reached the end of their useful life. As per E-waste Rule 2016, the E waste defined as electrical and electronic equipment, whole or in part discarded as waste by the consumer or bulk consumer as well as rejects from manufacturing, refurbishment, and repair processes. E-waste contains many valuable, recoverable materials such as aluminum, copper, gold, silver, plastics, and ferrous metals. In order to conserve natural resources and the energy needed to produce new electronic equipment from virgin resources, electronic equipment can be refurbished, reused, and recycled instead of being land filled.</p><br>
-   
-    
-      </div>
-      <figure class="swing mb">
-     <iframe src=""  allow="controls" allowfullscreen></iframe>
-      </figure>
-       <audio controls><source src="audiofiles/anuhya.mp3" type="audio/mpeg"></audio>
-      <figure class="swing">
-       <img src="https://www.iasbhai.com/wp-content/uploads/Who-are-the-Sentinelese-UPSC.jpg" width="96%" height="90%">
-      </figure>
-    </section>
+      <p>Please fill the signup form attached below</p><br>
+      <fieldset>
+        <legend> SIGNUP FORM </legend>
+        <form id="signupform"
+             <label>Name<label> 
+               <input type="text" name="name" id="name"  placeholder="Enter your name- "required> 
+      
+            <label> Email </label>
+            <input type="text" name="Email" id="Email"  placeholder="Enter your emailid-  "required> 
+
+            <label> Name of the organisation </label>
+            <input type="text" name="nameoftheorg" id="nameoftheorg"  placeholder="Name of the organisation-  "required> 
+
+            <label> Password </label>
+            <input type="text" name="password" id="password"  placeholder="Password-  "required>
+      </fieldset>
+
+            <img src= "https://www.google.com/search?q=hello+img&rlz=1C1SQJL_enIN914IN914&sxsrf=ALeKk00U_f42houkVnY7W1GRQWxbLI6K9g:1626455959396&tbm=isch&source=iu&ictx=1&fir=NRYQF6zu-4hzZM%252C44stCfGQ-1LFQM%252C_&vet=1&usg=AI4_-kQUi54zbzEyWxJsvSdpYDSY9ru-HA&sa=X&ved=2ahUKEwjR6M7NjOjxAhU8yjgGHTBYB9cQ9QF6BAgJEAE#imgrc=NRYQF6zu-4hzZM" alt="Phellosd icture" >
+      
+            </section></div>
+      
+      
+      
+      
+      <textarea  cols="30" rows="10"></textarea>
+      <textarea name="" id="" cols="50" rows="10"></textarea>
+      
+      
+      <select required>
+        <option disabled selected value>Select current role </option>
+        <option> Administrator </option>
+        <option> Employee </option>
+      </select>
+
     <!-- 2 section ends-->
 
     <!-- 3 section start-->
     <section id="three-section">
       <div class="c o"> 
-      <h2><u>VOLUME OF E-WASTE GENERATED:</u></h2>
-      <p>Studies so far reveal that the total e-waste generation in India is approximately 1,46,000 tonnes to 3.3 lakh tonnes a year and is expected to touch 4.7 lakh tonnes by 2011.‘The projected growth for e-waste generation for India is about 34% year on year’ says Sinha (Associate Director of Toxics Link).
-      Of the total e-waste generated in the country, western India accounts for the largest population at 35%, while the southern, northern and eastern regions account for 30, 21 and 14%, respectively. The top states in order of highest contribution to waste electrical and electronic equipment (WEEE) include Maharashtra, Andhra Pradesh, Tamil Nadu, Uttar Pradesh, West Bengal, Delhi, Karnataka, Gujarat, Madhya Pradesh and Punjab. 
-       </p>
-      <h2><u>HAZARDS CAUSED BY E-WASTE:</u></h2>
-      <p>Electronic waste contains toxic components that are dangerous to human health, such as mercury, lead, cadmium, polybrominated flame retardants, barium and lithium. The negative health effects of these toxins on humans include brain, heart, liver, kidney and skeletal system damage. It can also considerably affect the nervous and reproductive systems of the human body, leading to disease and birth defects. Improper disposal of e-waste is unbelievably dangerous to the global environment, which is why it is so important to spread awareness on this growing problem and the threatening aftermath.</p>
+      <h2><u>LOGIN:</u></h2>
+      <legend> LOGIN FORM </legend>
+        <form id="loginform"
+             <label>Name<label> 
+               <input type="text" name="name" id="name"  placeholder="Enter your name- "required> 
+      
+            <label> Email </label>
+            <input type="text" name="Email" id="Email"  placeholder="Enter your emailid-  "required> 
+
+            <label> Name of the organisation </label>
+            <input type="text" name="nameoftheorg" id="nameoftheorg"  placeholder="Name of the organisation-  "required> 
+
+            <label> Password </label>
+            <input type="text" name="password" id="password"  placeholder="Password-  "required>
+
+
+      </fieldset>
+      
     
       </div>
       <figure class="swing">
@@ -73,80 +108,9 @@
     </section>
     <!-- 3 section ends-->
 
-    <!--4 section start-->
-    <section id="four-section">
-      <div class="c o"> 
-      <h2><u>POOR AWARNESS AND SENSITIZATION</u></h2>
-      <p>In developed countries, e-waste management is given high priority, while in developing countries it is exacerbated by completely adopting or replicating the e-waste management of developed countries and several related problems including, lack of investment and technically skilled human resources. In addition, there is lack of infrastructure and absence of appropriate legislations specifically dealing with e-waste. Also, there is inadequate description of the roles and responsibilities of stakeholders and institutions involved in e-waste management.</p><br>
-      <h2><u></u></h2>
-      <p>E-waste collection, transportation, processing, and recycling is dominated by the informal sector. The sector is well networked but unregulated. Often, the materials of value that could be potentially recovered is not tended to. In addition, there are serious issues regarding leakages of toxins into the environment and workers’ safety and health.</p><br>
-      <h2><u>CUSTOMS/RELIGIOUS BELIEFS:</u></h2>
-      <p>The only information available regarding the tribe’s religion concerns their unique burial ritual. An infant, after his death, is buried and a “nautilus shell” along with a few small seashells is placed on top of the grave.The tribe’s aggressive attitude in keeping out anyone trying to come in contact also points at the fact that maybe they consider the latter as demons or bad omens.</p><br>
-      </div>
-      <figure class="swing">
-       <img src="https://i.guim.co.uk/img/media/48c54dbc8ac07544469fed617d06a190d62831ec/387_0_5154_3094/master/5154.jpg?width=700&quality=85&auto=format&fit=max&s=b0aa19c38f6ade43a755d797fdc0707f" width="96%" height="90%">
-      </figure>
-       <audio controls><source src="audiofiles/sanjana.mp3" type="audio/mpeg"></audio>
-      <figure class="swing">
-       <img src="https://assets.survivalinternational.org/pictures/1073/braz-unc-gm-02_460_landscape.jpg" width="96%" height="90%">
-      </figure>
-    </section>
-    <!-- 4 section ends-->
-
-    <!-- 5 section start-->
-    <section id="five-section">
-      <div class="c o"> 
-      <h2><u>E-waste imports</u></h2>
-   Electronic waste trade is a global environmental injustice issue. Electronic waste is composed of precious metals, making its recycling and reuse economically viable. ... This study uses social network analysis to analyze international trade in environmental context, specifically the global trade in electronic waste......“E-waste”, “electronic waste”, “e-scrap” and “end-of-life electronics” are terms often used to describe used electronics that are nearing the end of their useful life, and are discarded, donated or given to a recycler. Though “e-waste” is the commonly used term, EPA considers e-waste to be a subset of used electronics and recognizes the inherent value of these materials that can be reused, refurbished or recycled to minimize the actual waste that might end up in a landfill or improperly disposed in an unprotected dump site either on homeland or abroad.<br><br>
-
-   Although e-waste is a general term, it can be considered to denote items such as TV appliances, computers, laptops, tablets, mobile phones, white goods - for example, fridges, washing machines, dryers - home entertainment and stereo systems, toys, toasters and kettles.<br><br>
-
-    With the recent ban on the import of solid plastic, the Narendra Modi government has shown that it is keen to crack down on the growing issue of e-waste in India. The county is among the top five sources of e-waste, which comprises all discarded items of electrical and electronic equipment (EEE) and its parts
-      </p>
-      </div>
-     <figure class="swing">
-       <iframe src=""  allow="controls" allowfullscreen></iframe>
-</figure>
-      <figure class="swing">
-       <img src="https://edtimes.in/wp-content/uploads/2017/12/Untitled-design-1-2.jpg" width="96%" height="90%">
-      </figure>
-    </section>
-    <!-- 5 section ends-->
-
-    <!-- 6 section start-->
-    <section id="six-section">
-      <div class="c o"> 
-        <h2><u>CURRENT SITUATION</u></h2>
-      <p>From 1996 the regular gift dropping missions stopped. Many officials were beginning to question the wisdom of attempting to contact people who were healthy and content and had thrived on their own for up to 55,000 years. Friendly contact had had only a devastating impact on the Great Andamanese tribes. Sustained contact with the Sentinelese would almost certainly have tragic consequences
-     <br><br>
-      In the following years only occasional visits were made, again with a mixed response. After the Tsunami in 2004, officials made two visits to check, from a distance, that the tribe seemed healthy and were not suffering in any way. They then declared that no further attempts would be made to contact the Sentinelese.
-<br><br>
-      Periodic checks, from boats anchored at a safe distance from shore, are made to ensure that the Sentinelese appear well and have not chosen to seek contact.
-<br><br>
-      The uncontacted Sentinelese, as the most isolated tribe in the world, are extremely vulnerable to diseases from outsiders, but during a global pandemic the risk of devastating infection is even greater. Without proper patrolling of the waters around their island they are at risk of coming into contact with poachers illegally fishing and diving for lobster.</p>
-      </div>
-      <figure class="swing">
-       <iframe  src=""  allow="controls" allowfullscreen></iframe>
-      </figure>
-      <figure class="swing">
-       <img src="https://static.toiimg.com/thumb/66755695/Main.jpg?width=1200&height=900"width="96%" height="90%">
-      </figure>
-    </section>
-    <!-- 6 section ends-->
-
-    <!-- 7 section start-->
-    <section id="seven-section">
-      <div class="cc";">
-      <h1><u>DONE BY-</u></h1>
-      <h1>SAKTHI</h1>
-      <h1>SANJANA</h1>
-      <h1>ANUHYA</h1>
-      <h1>PRISHA</h1>
-      <h1>MEHEER</h1>
-      </div>
-    </section>
-    <!-- 7 section ends-->
-
+ 
   </body>
   
 </html>
+
+
