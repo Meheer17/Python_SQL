@@ -14,7 +14,7 @@
 			<a href="#About-section">
 				<li>ABOUT THE WEBSITE</li>
 			</a>
-			<a href="login-section">
+			<a href="#login-section">
 				<li>LOGIN</li>
 			</a>
 			<a href="#signup-section">
@@ -76,6 +76,7 @@
     <!-- 2 section ends-->
 
     <!-- 3 section start-->
+    {% if page == 'signup' %}
     <section id="three-section">
       <div class="c o"> 
       <h2><u>LOGIN:</u></h2>
@@ -96,7 +97,7 @@
 
       </fieldset>
       
-    
+      {% endif %}
       
   </body>
   
