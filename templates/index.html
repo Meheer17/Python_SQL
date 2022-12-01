@@ -104,24 +104,37 @@
             <label> Password </label>
             <input type="text" name="password" id="password"  placeholder="Password-  "required><br>
       
-      {% if page == 'signup' %}
-      <section id="#View_data">
+      {% elif page == 'signup' %}
+      <section id="#Manupilate_data">
               <div class="c o"> 
               <h2><u>SELECT ALL APPLICABLE FIELDS:</u></h2>
-              <legend> LOGIN FORM </legend>
-                <form id="loginform" action="/jasdb" method="POST">
-                    <label>Display all?</label> 
+              <legend> Insert Details </legend>
+                <form id="view_form" action="/jasdb" method="POST">
+                    <label>De</label> 
                        <input type="radio" name="Display All" id="name" required> <br>
               
-                    <label>Di<label> 
+                    <label>Display by group</label> 
                         <input type="radio" name="Display All" id="name" required> <br>
         
-                    <label>Display all?<label> 
+                    <label>Custom Query</label> 
                           <input type="radio" name="Display All" id="name" required> <br>
 
-                    <label>Display all?<label> 
-                            <input type="radio" name="Display All" id="name" required> <br>
-                          </form>
+
+                          <section id="#View_data">
+                            <div class="c o"> 
+                            <h2><u>SELECT ALL APPLICABLE FIELDS:</u></h2>
+                            <legend> VIEW FORM </legend>
+                              <form id="view_form" action="/jasdb" method="POST">
+                                  <label>Display all?</label> 
+                                     <input type="radio" name="Display All" id="name" required> <br>
+                            
+                                  <label>Display by group</label> 
+                                      <input type="radio" name="Display All" id="name" required> <br>
+                      
+                                  <label>Custom Query</label> 
+                                        <input type="radio" name="Display All" id="name" required> <br>
+
+                    
 
       </fieldset>
       
