@@ -77,7 +77,17 @@
 
     <!-- 3 section start-->
     {% if page == 'signup' %}
-    <section id="three-section">
+
+    <section id="#login-section"></section>
+    <nav id="Navigation Bar">
+      <ul>
+        <a href="#View_data">
+          <li>View Data</li>
+        </a>
+        <a href="#Manupilate_data">
+          <li>Manupilate Data</li>
+        
+    
       <div class="c o"> 
       <h2><u>LOGIN:</u></h2>
       <legend> LOGIN FORM </legend>
@@ -93,7 +103,25 @@
 
             <label> Password </label>
             <input type="text" name="password" id="password"  placeholder="Password-  "required><br>
+      
+      {% if page == 'signup' %}
+      <section id="#View_data">
+              <div class="c o"> 
+              <h2><u>SELECT ALL APPLICABLE FIELDS:</u></h2>
+              <legend> LOGIN FORM </legend>
+                <form id="loginform" action="/jasdb" method="POST">
+                    <label>Display all?</label> 
+                       <input type="radio" name="Display All" id="name" required> <br>
+              
+                    <label>Di<label> 
+                        <input type="radio" name="Display All" id="name" required> <br>
+        
+                    <label>Display all?<label> 
+                          <input type="radio" name="Display All" id="name" required> <br>
 
+                    <label>Display all?<label> 
+                            <input type="radio" name="Display All" id="name" required> <br>
+                          </form>
 
       </fieldset>
       
