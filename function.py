@@ -8,8 +8,8 @@ headers = [0,'COMMON'] # This is a list that holds a user authentication.
 
 mydb = mysql.connector.connect( # To establish the connection between python on MYSQL
     host="localhost",
-    user="meheer",            # Username to be entered here
-    password="meheer",        # Password for MYSQL
+    user="",            # Username to be entered here
+    password="",        # Password for MYSQL
 )
 
 mc = mydb.cursor() # The MYSQL CURSOR TO EXECUTE THE COMMANDS
@@ -321,14 +321,16 @@ def insert():
     print()
     text = ''
     dict = {}
-    for i in data[0]:
-        if i[1] != 'bigint(20) unsigned':
-            t = input(f"Enter the value for {i[0]}: ")
-            if t.isalnum():
-                dict[i[0]] = str(t)
-            if t.isdigit():
-                dict[i[0]] = int(t)
-            text += i[0] + ','
-    values = tuple(dict.values())
-    mc.execute(f'INSERT INTO {data[1][data[2]-1][0]} ({text[:-1]}) VALUES {values}')
-    mydb.commit()
+    number_of_records = int(input('Number of records to insert'))
+    for j in range(number_of_records):
+        for i in data[0]:
+            if i[1] != 'bigint(20) unsigned':
+                t = input(f"Enter the value for {i[0]}: ")
+                if t.isalnum():
+                    dict[i[0]] = str(t)
+                if t.isdigit():
+                    dict[i[0]] = int(t)
+                text += i[0] + ','
+        values = tuple(dict.values())
+        mc.execute(f'INSERT INTO {data[1][data[2]-1][0]} ({text[:-1]}) VALUES {values}')
+        mydb.commit()
