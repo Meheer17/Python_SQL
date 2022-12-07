@@ -8,8 +8,8 @@ headers = [0,'COMMON'] # This is a list that holds a user authentication.
 
 mydb = mysql.connector.connect( # To establish the connection between python on MYSQL
     host="localhost",
-    user="",            # Username to be entered here
-    password="",        # Password for MYSQL
+    user="root",            # Username to be entered here
+    password="parth2005",        # Password for MYSQL
 )
 
 mc = mydb.cursor() # The MYSQL CURSOR TO EXECUTE THE COMMANDS
