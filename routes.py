@@ -12,9 +12,9 @@ else:
 def home():
     return render_template("index.html", page='login')
 
-@app.route("/jasdb", methods=["GET","POST"])
+@app.route("/login-section", methods=["GET","POST"])
 def jasdb():
-    return render_template("index.html", page='login')
+    return render_template("login.html")
 
 if __name__ == "__main__":
 	app.run()
