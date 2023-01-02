@@ -14,7 +14,10 @@ def home():
 
 @app.route("/login-section", methods=["GET","POST"])
 def jasdb():
-    return render_template("login.html")
+    if request.method == 'GET':
+        return render_template("login.html")
+    else:
+        sql.Login(request.form['Email'], request.form['Password'])
 
 if __name__ == "__main__":
 	app.run()
