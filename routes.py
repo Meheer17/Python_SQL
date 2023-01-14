@@ -10,7 +10,7 @@ else:
 
 @app.route("/", methods=["GET"])
 def home():
-    return render_template("index.html")
+    return render_template("index.html", auth = auth )
 
 if auth == False:
     @app.route("/login", methods=["GET","POST"])
@@ -25,10 +25,18 @@ if auth == False:
         if request.method == 'GET':
             return render_template("login.html", page='SIGNUP', auth = auth)
         else:
-            sql.Login(request.form['Email'], request.form['Password'])
+            sql.SignUp(request.form['Email'], request.form['Password'])
 else:
-    def retrn():
-        return redirect("/")
+    @app.route("/database", methods=["GET","POST"])
+    def Display_Tables():
+        data = sql.ShowTable()
+        if desc:
+            args = request.args.to_dict().get("Table_number")
+            desc = sql.DesTable(args)
+            return render_template('database.html', tables=data, desc=desc)
+        else: 
+            return render_template('database.html', tables=data)
+        
 
 if __name__ == "__main__":
 	app.run()

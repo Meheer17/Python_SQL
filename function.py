@@ -54,9 +54,7 @@ def DisplayDatabase():                  # To get all the Database Names
         print()
         return data
 
-def SignUp():                           # Signup for a new User (Creating a new Database)
-    database_name = input("Enter the Database Name to be Created: ")
-    pas = input("Enter Your Password: ")
+def SignUp(database_name, pas):                           # Signup for a new User (Creating a new Database)
     mc.execute(f"CREATE DATABASE IF NOT EXISTS {database_name};")
     mc.execute(f"USE {database_name};")
     mc.execute(f"CREATE TABLE IF NOT EXISTS password(password varchar(100));")
@@ -81,9 +79,9 @@ def ShowTable():                        # To display and send the Table datas th
     if Auth():
         mc.execute("SHOW TABLES;")
         data = mc.fetchall()
-        print()
         for i in range(len(data)):
             print(f'{i + 1} - {data[i][0]}')
+        print(data)
         return data
 
 def CreateTable():                      # Creating a table with Datatypes and Constraints (Complusory)
@@ -111,10 +109,9 @@ def CreateTable():                      # Creating a table with Datatypes and Co
             tet = ",".join(c)
         mc.execute(f"CREATE TABLE {table_name}({tet});")
 
-def DesTable():                         # Desc Table_Name
+def DesTable(T_N):                         # Desc Table_Name
     if Auth():
         data = ShowTable()
-        T_N = int(input("Enter the Table Number to Show Details: "))
         mc.execute(f"DESC {data[T_N - 1][0]};")
         det = mc.fetchall()
         print("| Field | Type | Null | Key | Default | Extra |")
