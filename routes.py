@@ -10,7 +10,7 @@ else:
 
 @app.route("/", methods=["GET"])
 def home():
-    return render_template("index.html", page='login')
+    return render_template("index.html")
 
 if auth == False:
     @app.route("/login", methods=["GET","POST"])
