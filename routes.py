@@ -18,14 +18,14 @@ if auth == False:
         if request.method == 'GET':
             return render_template("login.html", page='LOGIN', auth = auth)
         else:
-            sql.Login(request.form['Email'], request.form['Password'])
+            sql.Login(request.form['email'], request.form['password'])
 
     @app.route("/signup", methods=["GET","POST"])
     def signup():
         if request.method == 'GET':
             return render_template("login.html", page='SIGNUP', auth = auth)
         else:
-            sql.SignUp(request.form['Email'], request.form['Password'])
+            sql.SignUp(request.form['email'], request.form['password'])
 else:
     @app.route("/database", methods=["GET","POST"])
     def Display_Tables():
