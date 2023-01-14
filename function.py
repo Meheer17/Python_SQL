@@ -60,8 +60,7 @@ def SignUp(database_name, pas):                           # Signup for a new Use
     mc.execute(f"CREATE TABLE IF NOT EXISTS password(password varchar(100));")
     mc.execute(f"INSERT INTO password VALUES ('{pas}');")
     mydb.commit()
-    print()
-    Login()
+    Login(database_name, pas)
 
 # def DropDatabase():                     # To drop a Database
 #     if Auth():
