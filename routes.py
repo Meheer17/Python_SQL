@@ -15,21 +15,27 @@ def home():
 
 @app.route("/login", methods=["GET","POST"])
 def login():
-    if request.method == 'GET':
-        return render_template("login.html", page='LOGIN', auth = sql.Auth())
-    elif request.method == "POST":
-        sql.Login(request.form['email'], request.form['password'])
-        return redirect('/')
+    if sql.Auth() == False:
+        if request.method == 'GET':
+            return render_template("login.html", page='LOGIN', auth = sql.Auth())
+        elif request.method == "POST":
+            sql.Login(request.form['email'], request.form['password'])
+            return redirect('/')
+        else:
+            return redirect('/')
     else:
         return redirect('/')
 
 @app.route("/signup", methods=["GET","POST"])
 def signup():
-    if request.method == 'GET':
-        return render_template("login.html", page='SIGNUP', auth = sql.Auth())
-    elif request.method == "POST":
-        sql.SignUp(request.form['email'], request.form['password'])
-        return redirect('/')
+    if sql.Auth() == False:
+        if request.method == 'GET':
+            return render_template("login.html", page='SIGNUP')
+        elif request.method == "POST":
+            sql.SignUp(request.form['email'], request.form['password'])
+            return redirect('/')
+        else:
+            return redirect('/')
     else:
         return redirect('/')
 
