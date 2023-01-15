@@ -8,8 +8,8 @@ headers = [0,'COMMON'] # This is a list that holds a user authentication.
 
 mydb = mysql.connector.connect( # To establish the connection between python on MYSQL
     host="localhost",
-    user="root",            # Username to be entered here
-    password="parth2005",        # Password for MYSQL
+    user="meheer",            # Username to be entered here
+    password="meheer",        # Password for MYSQL
 )
 
 mc = mydb.cursor() # The MYSQL CURSOR TO EXECUTE THE COMMANDS
@@ -105,7 +105,7 @@ def CreateTable():                      # Creating a table with Datatypes and Co
 def DesTable(T_N):                         # Desc Table_Name
     if Auth():
         data = ShowTable()
-        mc.execute(f"DESC {data[T_N - 1][0]};")
+        mc.execute(f"DESC {T_N};")
         det = mc.fetchall()
         print("| Field | Type | Null | Key | Default | Extra |")
         for i in det:
@@ -205,11 +205,10 @@ def Constraint():                       # Used as a function to send the text fo
 
 # Codes for displaying content.
 
-def DisplayAll():                          # SELECT * FROM TABLE_NAME
+def DisplayAll(tn):                          # SELECT * FROM TABLE_NAME
     if Auth():
         data = ShowTable()
-        ta = int(input("Enter the table num you want to access: "))
-        mc.execute(F"SELECT * FROM {data[ta -1][0]}")
+        mc.execute(F"SELECT * FROM {tn}")
         for i in mc.description:
             print(i[0], end="   ")
         data = mc.fetchall()
@@ -217,6 +216,8 @@ def DisplayAll():                          # SELECT * FROM TABLE_NAME
             print()
             for j in i:
                 print(j, end="     ")
+        print(data)
+        return data
         
 def DisplayWithWhere():                     # SELECT * FROM TABLE NAME WHERE <CONDITION>
     if Auth():

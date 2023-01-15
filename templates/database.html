@@ -44,23 +44,117 @@
 
 <body>
 
-  <table class="table-fixed">
-    <thead>
-      <tr>
-        <th>Tables</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for i in tables %}
-        <tr>
-          <td>{{i[0]}}</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <div class="relative overflow-x-auto mt-10 shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Tables
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for i in tables %}
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">      
+                  <th class="px-6 py-4">
+                    {{i[0]}}
+                  </th>
+                </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+  </div>
+  
 
- <form action="/database", method="POST">
-   
+ <form action="/database" class="mt-10">
+  <label for="fname">database name:</label><br>
+   <input class="bg-slate-700 text-white" type="text" name="tn" id="tn"><br>
+   <input type="submit" class="bg-sky-400 p-3" value="Submit">
   </form>
 
+  {% if desc %}
+  <div class="relative max-w-6xl overflow-x-auto mt-10 shadow-md sm:rounded-lg">
+    DESCRIPTION OF THE TABLE
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Field
+                </th>
+                  <th scope="col" class="px-6 py-3">
+                    Type
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Null
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Key
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Default
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  EXtra
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for i in desc[0] %}
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">      
+                  <th class="px-6 py-4">
+                    {{i[0]}}
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    {{i[1]}}
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  {{i[2]}}
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  {{i[3]}}
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  {{i[4]}}
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  {{i[5]}}
+                </th>
+                </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+  </div>
+  {% endif %}
+
+  {% if desc %}
+
+  <div class="relative max-w-6xl overflow-x-auto mt-10 shadow-md sm:rounded-lg">
+    DATA IN THE TABLE:-
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              {% for i in desc[0] %}
+                <th scope="col" class="px-6 py-3">
+                    {{i[0]}}
+                </th>
+              {% endfor %}
+            </tr>
+        </thead>
+      </tbody>
+      <tbody>
+        {% for i in disdat %}
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">      
+              {% for j in i %}
+                <th class="px-6 py-4">
+                  {{j}}
+                </th>
+              {% endfor %}
+            </tr>
+            {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+
 </body>
+</html>
