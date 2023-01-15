@@ -30,7 +30,7 @@ def login():
 def signup():
     if sql.Auth() == False:
         if request.method == 'GET':
-            return render_template("login.html", page='SIGNUP')
+            return render_template("login.html", page='SIGNUP',  auth = sql.Auth())
         elif request.method == "POST":
             sql.SignUp(request.form['email'], request.form['password'])
             return redirect('/')
