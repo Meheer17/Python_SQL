@@ -42,7 +42,7 @@ def signup():
 @app.route("/database", methods=["GET","POST"])
 def Display_Tables():
     data = sql.ShowTable()
-    if desc:
+    if request.args.to_dict().get("Table_number"):
         args = request.args.to_dict().get("Table_number")
         desc = sql.DesTable(args)
         return render_template('database.html', tables=data, desc=desc)
