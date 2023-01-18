@@ -51,7 +51,7 @@ def Display_Tables():
     else: 
         return render_template('database.html', tables=data)
 
-@app.route("/update", methods=["GET","POST"])
+@app.route("/update-database", methods=["GET","POST"])
 def updatepg():
     data = sql.ShowTable()
     print(request)
