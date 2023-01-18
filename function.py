@@ -8,8 +8,8 @@ headers = [0,'COMMON'] # This is a list that holds a user authentication.
 
 mydb = mysql.connector.connect( # To establish the connection between python on MYSQL
     host="localhost",
-    user="root",            # Username to be entered here
-    password="parth2005",        # Password for MYSQL
+    user="",            # Username to be entered here
+    password="",        # Password for MYSQL
 )
 
 mc = mydb.cursor() # The MYSQL CURSOR TO EXECUTE THE COMMANDS
@@ -20,12 +20,13 @@ mc.database = headers[1]
 
 # Codes for creating, deleting and modifying tables.
 
-def Login(name, pas):                            # This function is the most important function, without which none of the other codes work.
-    data = DisplayDatabase()
+def Login():
+                                # This function is the most important function, without which none of the other codes work.
+    name = input("Enter the database name: ")
+    pas = input("Enter your password: ")
+    login = False
     for i in data:
         if i[0] == name:
-            name=input("Username: ")
-            password=input("Password: ")
             mc.execute(f"USE {name};")
             mc.execute(f"SELECT * FROM password;")
             data = mc.fetchall()
@@ -34,15 +35,20 @@ def Login(name, pas):                            # This function is the most imp
                 if i[0] == pas:
                     headers = [1, name]
                     print("Login Successful!!")
+                    login = True
                     break
                 else:
                     print("Wrong Password!!")
                     mc.execute(f"USE {headers[1]};") 
                     break
+    if login == False:
+        op = input("Do you want to sign up? (Y/N): ")
+        if op == "Y":
+            SignUp()
 
 
 def DisplayDatabase():                  # To get all the Database Names 
-    # if Auth():
+    if Auth():
         mc.execute("SHOW DATABASES;")
         data = mc.fetchall()
         for i in range(len(data)):
@@ -50,15 +56,16 @@ def DisplayDatabase():                  # To get all the Database Names
         print()
         return data
 
-def SignUp(database_name, pas):  
-    database_name=input("Enter your username")
-    pas=input("Enter your password")                         # Signup for a new User (Creating a new Database)
+def SignUp():                           # Signup for a new User (Creating a new Database)
+    database_name = input("Enter the Database Name to be Created: ")
+    pas = input("Enter Your Password: ")
     mc.execute(f"CREATE DATABASE IF NOT EXISTS {database_name};")
     mc.execute(f"USE {database_name};")
     mc.execute(f"CREATE TABLE IF NOT EXISTS password(password varchar(100));")
     mc.execute(f"INSERT INTO password VALUES ('{pas}');")
     mydb.commit()
-    Login(database_name, pas)
+    print()
+    Login()
 
 # def DropDatabase():                     # To drop a Database
 #     if Auth():
@@ -76,9 +83,9 @@ def ShowTable():                        # To display and send the Table datas th
     if Auth():
         mc.execute("SHOW TABLES;")
         data = mc.fetchall()
+        print()
         for i in range(len(data)):
             print(f'{i + 1} - {data[i][0]}')
-        print(data)
         return data
 
 def CreateTable():                      # Creating a table with Datatypes and Constraints (Complusory)
@@ -100,18 +107,17 @@ def CreateTable():                      # Creating a table with Datatypes and Co
             else:
                 dt = f"{DataTypes[int(dt[0])-1]}"
             
-            # cons = Constraint()
-            # txt = f"{naof} {dt} {cons}"
-            txt = f"{naof} {dt}"
-
+            cons = Constraint()
+            txt = f"{naof} {dt} {cons}"
             c.append(txt)
             tet = ",".join(c)
         mc.execute(f"CREATE TABLE {table_name}({tet});")
 
-def DesTable(T_N):                         # Desc Table_Name
+def DesTable():                         # Desc Table_Name
     if Auth():
         data = ShowTable()
-        mc.execute(f"DESC {T_N};")
+        T_N = int(input("Enter the Table Number to Show Details: "))
+        mc.execute(f"DESC {data[T_N - 1][0]};")
         det = mc.fetchall()
         print("| Field | Type | Null | Key | Default | Extra |")
         for i in det:
@@ -211,10 +217,11 @@ def Constraint():                       # Used as a function to send the text fo
 
 # Codes for displaying content.
 
-def DisplayAll(tn):                          # SELECT * FROM TABLE_NAME
+def DisplayAll():                          # SELECT * FROM TABLE_NAME
     if Auth():
         data = ShowTable()
-        mc.execute(F"SELECT * FROM {tn}")
+        ta = int(input("Enter the table num you want to access: "))
+        mc.execute(F"SELECT * FROM {data[ta -1][0]}")
         for i in mc.description:
             print(i[0], end="   ")
         data = mc.fetchall()
@@ -222,8 +229,6 @@ def DisplayAll(tn):                          # SELECT * FROM TABLE_NAME
             print()
             for j in i:
                 print(j, end="     ")
-        print(data)
-        return data
         
 def DisplayWithWhere():                     # SELECT * FROM TABLE NAME WHERE <CONDITION>
     if Auth():
