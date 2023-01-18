@@ -96,8 +96,10 @@ def CreateTable():                      # Creating a table with Datatypes and Co
             else:
                 dt = f"{DataTypes[int(dt[0])-1]}"
             
-            cons = Constraint()
-            txt = f"{naof} {dt} {cons}"
+            # cons = Constraint()
+            # txt = f"{naof} {dt} {cons}"
+            txt = f"{naof} {dt}"
+
             c.append(txt)
             tet = ",".join(c)
         mc.execute(f"CREATE TABLE {table_name}({tet});")
