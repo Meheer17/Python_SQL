@@ -8,8 +8,8 @@ headers = [0,'COMMON'] # This is a list that holds a user authentication.
 
 mydb = mysql.connector.connect( # To establish the connection between python on MYSQL
     host="localhost",
-    user="",            # Username to be entered here
-    password="",        # Password for MYSQL
+    user="root",            # Username to be entered here
+    password="parth2005",        # Password for MYSQL
 )
 
 mc = mydb.cursor() # The MYSQL CURSOR TO EXECUTE THE COMMANDS
@@ -24,6 +24,7 @@ def Login():
                                 # This function is the most important function, without which none of the other codes work.
     name = input("Enter the database name: ")
     pas = input("Enter your password: ")
+    data=DisplayDatabase()
     login = False
     for i in data:
         if i[0] == name:
@@ -48,11 +49,11 @@ def Login():
 
 
 def DisplayDatabase():                  # To get all the Database Names 
-    if Auth():
+    #if Auth():
         mc.execute("SHOW DATABASES;")
         data = mc.fetchall()
-        for i in range(len(data)):
-            print(f'{i + 1} - {data[i][0]}')
+#        for i in range(len(data)):
+#           print(f'{i + 1} - {data[i][0]}')
         print()
         return data
 
@@ -144,6 +145,7 @@ def DropTable():
         dt = int(input("Enter the table to delete: "))
         if data[dt-1][0] != 'password':
             mc.execute(f"DROP TABLE {data[dt-1][0]}")
+        db.commit()
         
 def ADMTable():                         # ADD, DELETE AND MODIFY COLUMNS IN A TABLE
     if Auth():
