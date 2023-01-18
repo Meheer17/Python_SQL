@@ -47,9 +47,21 @@ def Display_Tables():
         args = request.args.get("tn")
         desc = sql.DesTable(args)
         disdat = sql.DisplayAll(args)
-        return render_template('database.html', tables=data, desc=desc, disdat=disdat)
+        return render_template('database.html',auth= sql.Auth(), tables=data, desc=desc, disdat=disdat)
     else: 
         return render_template('database.html', tables=data)
+
+@app.route("/update", methods=["GET","POST"])
+def Display_Tables():
+    data = sql.ShowTable()
+    print(request)
+    if request.args.get("tn"):
+        args = request.args.get("tn")
+        desc = sql.DesTable(args)
+        disdat = sql.DisplayAll(args)
+        return render_template('update.html',auth= sql.Auth(), tables=data, desc=desc, disdat=disdat)
+    else: 
+        return render_template('update.html', tables=data)
 
 def ret():
     return redirect(url_for("home"))
