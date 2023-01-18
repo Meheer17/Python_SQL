@@ -8,8 +8,8 @@ headers = [0,'COMMON'] # This is a list that holds a user authentication.
 
 mydb = mysql.connector.connect( # To establish the connection between python on MYSQL
     host="localhost",
-    user="root",            # Username to be entered here
-    password="parth2005",        # Password for MYSQL
+    user="meheer",            # Username to be entered here
+    password="meheer",        # Password for MYSQL
 )
 
 mc = mydb.cursor() # The MYSQL CURSOR TO EXECUTE THE COMMANDS
@@ -145,7 +145,7 @@ def DropTable():
         dt = int(input("Enter the table to delete: "))
         if data[dt-1][0] != 'password':
             mc.execute(f"DROP TABLE {data[dt-1][0]}")
-        db.commit()
+        mydb.commit()
         
 def ADMTable():                         # ADD, DELETE AND MODIFY COLUMNS IN A TABLE
     if Auth():
@@ -221,9 +221,10 @@ def Constraint():                       # Used as a function to send the text fo
 
 def DisplayAll():                          # SELECT * FROM TABLE_NAME
     if Auth():
-        data = ShowTable()
-        ta = int(input("Enter the table num you want to access: "))
-        mc.execute(F"SELECT * FROM {data[ta -1][0]}")
+        det = ShowTable()
+        ta = int(input("\nEnter the table num you want to access: "))
+        print()
+        mc.execute(F"SELECT * FROM {det[ta -1][0]}")
         for i in mc.description:
             print(i[0], end="   ")
         data = mc.fetchall()
@@ -231,6 +232,7 @@ def DisplayAll():                          # SELECT * FROM TABLE_NAME
             print()
             for j in i:
                 print(j, end="     ")
+        print()
         
 def DisplayWithWhere():                     # SELECT * FROM TABLE NAME WHERE <CONDITION>
     if Auth():
@@ -321,12 +323,11 @@ def del_rec(): # function to delete records under a table
         
 def insert():
     data = DesTable()
-    print(data)
-    print()
-    text = ''
     dict = {}
-    number_of_records = int(input('Number of records to insert'))
+    number_of_records = int(input('\nNumber of records to insert: '))
     for j in range(number_of_records):
+        text = ''
+        print()
         for i in data[0]:
             if i[1] != 'bigint(20) unsigned':
                 t = input(f"Enter the value for {i[0]}: ")
@@ -336,5 +337,6 @@ def insert():
                     dict[i[0]] = int(t)
                 text += i[0] + ','
         values = tuple(dict.values())
-        mc.execute(f'INSERT INTO {data[1][data[2]-1][0]} ({text[:-1]}) VALUES {values}')
+        t = f'INSERT INTO {data[1][data[2]-1][0]} ({text[:-1]}) VALUES {values};'
+        mc.execute(t)
         mydb.commit()

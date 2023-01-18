@@ -9,7 +9,7 @@ elif f1=="L" or f1=="l":
 
 if sql.Auth():
     while True:
-        print('''MENU
+        print('''\nMENU
         1. Display Table
         2. Create Table
         3. Describe Table
@@ -21,7 +21,8 @@ if sql.Auth():
         9. Insert Record
         10. Delete Record
         11. Exit''')
-        ch=int(input("Enter your choice"))
+
+        ch=int(input("\nEnter your choice: "))
         if ch==1:
             sql.ShowTable()
         elif ch==2:
@@ -35,9 +36,25 @@ if sql.Auth():
         elif ch==6:
             sql.ADMTable()
         elif ch==7:
-            sql.DisplayAll()
+            while True:
+                print('\nMENU \n\t1. All \n\t2. With Where Clause \n\t3. Order By \n\t4. Group By \n\t5. Custom Query \n\t6. Exit')
+                ch = int(input("\nEnter your choice: "))
+                if ch == 1:
+                    sql.DisplayAll()
+                elif ch == 2:
+                    sql.DisplayWithWhere()
+                elif ch == 3:
+                    sql.DisplayOrderBy()
+                elif ch == 4:
+                    sql.DisplayGroupBy()
+                elif ch == 5:
+                    sql.CustomQuery()
+                elif ch == 6:
+                    break
+                else: 
+                    print("Invalid")
         elif ch==8:
-            sql.update()
+            sql.Update()
         elif ch==9:
             sql.insert()
         elif ch==10:
