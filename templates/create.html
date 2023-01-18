@@ -44,30 +44,52 @@
 
 <body>
 
-  <div class="relative overflow-x-auto mt-10 shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" class="px-6 py-3">
-                    Tables
-                </th>
-            </tr>
+    <table class="tg">
+        <thead>
+          <tr>
+            <th class="tg-0lax">1</th>
+            <th class="tg-0lax">CHAR</th>
+          </tr>
         </thead>
         <tbody>
-          {% for i in tables %}
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">      
-                  <th class="px-6 py-4">
-                    {{i[0]}}
-                  </th>
-                </tr>
-          {% endfor %}
+          <tr>
+            <td class="tg-0lax">2</td>
+            <td class="tg-0lax">VARCHAR</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">3</td>
+            <td class="tg-0lax">TEXT</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">4</td>
+            <td class="tg-0lax">INT</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">5</td>
+            <td class="tg-0lax">TINYINT</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">6</td>
+            <td class="tg-0lax">FLOAT</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">7</td>
+            <td class="tg-0lax">DATE</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">8</td>
+            <td class="tg-0lax">TIMESTAMP</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">9</td>
+            <td class="tg-0lax">SERIAL</td>
+          </tr>
         </tbody>
-    </table>
-  </div>
+        </table>
   
 
  <form action="/database" class="mt-10">
-  <label for="fname">Table name(Please enter the table name to create a new table):</label><br>
+  <label for="fname">I:</label><br>
    <input class="bg-slate-700 text-white" type="text" name="tn" id="tn1"><br>
    <input type="submit" class="bg-sky-400 p-3" value="Submit">
    <label for="cnumber">No of Coloumns:</label><br>
