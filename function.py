@@ -24,6 +24,8 @@ def Login(name, pas):                            # This function is the most imp
     data = DisplayDatabase()
     for i in data:
         if i[0] == name:
+            name=input("Username: ")
+            password=input("Password: ")
             mc.execute(f"USE {name};")
             mc.execute(f"SELECT * FROM password;")
             data = mc.fetchall()
@@ -48,7 +50,9 @@ def DisplayDatabase():                  # To get all the Database Names
         print()
         return data
 
-def SignUp(database_name, pas):                           # Signup for a new User (Creating a new Database)
+def SignUp(database_name, pas):  
+    database_name=input("Enter your username")
+    pas=input("Enter your password")                         # Signup for a new User (Creating a new Database)
     mc.execute(f"CREATE DATABASE IF NOT EXISTS {database_name};")
     mc.execute(f"USE {database_name};")
     mc.execute(f"CREATE TABLE IF NOT EXISTS password(password varchar(100));")
