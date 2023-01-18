@@ -52,7 +52,7 @@ def Display_Tables():
         return render_template('database.html', tables=data)
 
 @app.route("/update", methods=["GET","POST"])
-def Display_Tables():
+def updatepg():
     data = sql.ShowTable()
     print(request)
     if request.args.get("tn"):
