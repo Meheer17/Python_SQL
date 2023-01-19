@@ -309,7 +309,7 @@ def del_rec(): # function to delete records under a table
             print(f"{i + 1} - {data[0][i]}")
         ch = int(input("Enter the table number: "))
         table = data[0][ch-1]
-        print('\n1. Specific Records \n2. All records')
+        print('\n\t1. Specific Records \n\t2. All records')
         d = int(input("Enter the choice: "))
 
         if d == 1: 
