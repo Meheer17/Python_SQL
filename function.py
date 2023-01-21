@@ -304,11 +304,11 @@ def Update():                               # TO UPDATE THE RECORDS BY THE USER 
 def del_rec(): # function to delete records under a table
     if Auth():
         data = ShowTable()
-        print()
-        for i in range(len(data[0])):
-            print(f"{i + 1} - {data[0][i]}")
+        print(data)
+        for i in range(len(data)):
+            print(f"{i + 1} - {data[i][0]}")
         ch = int(input("Enter the table number: "))
-        table = data[0][ch-1]
+        table = data[ch-1][0]
         print('\n\t1. Specific Records \n\t2. All records')
         d = int(input("Enter the choice: "))
 
@@ -333,10 +333,13 @@ def insert():
                 t = input(f"Enter the value for {i[0]}: ")
                 if t.isalnum():
                     dict[i[0]] = str(t)
+                if t.replace(' ', '').isalnum():
+                    dict[i[0]] = str(t)
                 if t.isdigit():
                     dict[i[0]] = int(t)
                 text += i[0] + ','
         values = tuple(dict.values())
         t = f'INSERT INTO {data[1][data[2]-1][0]} ({text[:-1]}) VALUES {values};'
+        # print(t)
         mc.execute(t)
         mydb.commit()

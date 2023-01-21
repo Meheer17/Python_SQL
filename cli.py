@@ -60,6 +60,7 @@ if sql.Auth():
         elif ch==10:
             sql.del_rec()
         elif ch==11:
+            print("Bye!")
             break
         else:
             print("Invalid Choice")
