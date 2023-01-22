@@ -226,12 +226,12 @@ def DisplayAll():                          # SELECT * FROM TABLE_NAME
         print()
         mc.execute(F"SELECT * FROM {det[ta -1][0]}")
         for i in mc.description:
-            print(i[0], end="   ")
+            print("%-30s"%(i[0]), end='')
         data = mc.fetchall()
         for i in data:
             print()
             for j in i:
-                print(j, end="     ")
+                print("%-30s"%(j), end='')
         print()
         
 def DisplayWithWhere():                     # SELECT * FROM TABLE NAME WHERE <CONDITION>
