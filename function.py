@@ -241,12 +241,12 @@ def DisplayWithWhere():                     # SELECT * FROM TABLE NAME WHERE <CO
         cond = input("Enter the condition (WHERE METHOD): ")
         mc.execute(F"SELECT * FROM {data[ta - 1][0]} WHERE {cond};")
         for i in mc.description:
-            print(i[0], end="   ")
+            print("%-30s"%(i[0]), end='')
         data = mc.fetchall()
         for i in data:
             print()
             for j in i:
-                print(j, end="     ")
+                print("%-30s"%(j), end='')
 
 def DisplayOrderBy():                       # SELECT * FROM TABLE_NAME ORDER BY COLUMN_NAME
     if Auth():
@@ -255,12 +255,12 @@ def DisplayOrderBy():                       # SELECT * FROM TABLE_NAME ORDER BY 
         ob = input("Enter the method to order by (asc/desc): ")
         mc.execute(F"SELECT * FROM {data[1][data[2]-1][0]} ORDER BY {ta} {ob};")
         for i in mc.description:
-            print(i[0], end="   ")
+            print("%-30s"%(i[0]), end='')
         data = mc.fetchall()
         for i in data:
             print()
             for j in i:
-                print(j, end="     ")
+                print("%-30s"%(j), end='')
 
 def DisplayGroupBy():                       # SELECT * FROM TABLE_NAME GROUP BY COLUMN_NAME
     if Auth():
@@ -268,24 +268,24 @@ def DisplayGroupBy():                       # SELECT * FROM TABLE_NAME GROUP BY 
         ta = input("Enter the column name to group with: ")
         mc.execute(F"SELECT * FROM {data[1][data[2]-1][0]} GROUP BY {ta};")
         for i in mc.description:
-            print(i[0], end="   ")
+            print("%-30s"%(i[0]), end='')
         data = mc.fetchall()
         for i in data:
             print()
             for j in i:
-                print(j, end="     ")
+                print("%-30s"%(j), end='')
 
 def CustomQuery():                          # TO WRITE A USER DEFINED QUERY TO GET THEIR MOST FAVORABLE OUTPUT `SELECT <USER QUERY>`
     if Auth():
         code = input("Enter Your Query Here (After SELECT): ")
         mc.execute(f"SELECT {code} ;")
         for i in mc.description:
-            print(i[0], end="   ")
+            print("%-30s"%(i[0]), end='')
         data = mc.fetchall()
         for i in data:
             print()
             for j in i:
-                print(j, end="     ")
+                print("%-30s"%(j), end='')
 
 
 # Update Function
