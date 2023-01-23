@@ -333,13 +333,13 @@ def insert():
                 t = input(f"Enter the value for {i[0]}: ")
                 if t.isalnum():
                     dict[i[0]] = str(t)
-                if t.replace(' ', '').isalnum():
+                elif t.replace(' ', '').isalnum():
                     dict[i[0]] = str(t)
-                if t.isdigit():
+                elif t.isdigit():
                     dict[i[0]] = int(t)
                 text += i[0] + ','
         values = tuple(dict.values())
         t = f'INSERT INTO {data[1][data[2]-1][0]} ({text[:-1]}) VALUES {values};'
-        # print(t)
+        print(t)
         mc.execute(t)
         mydb.commit()
